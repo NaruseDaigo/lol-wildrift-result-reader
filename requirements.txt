@@ -1,0 +1,21 @@
+blinker @ file:///home/conda/feedstock_root/build_artifacts/blinker_1664823096650/work
+click @ file:///home/conda/feedstock_root/build_artifacts/click_1666798198223/work
+Flask @ file:///home/conda/feedstock_root/build_artifacts/flask_1676592993069/work
+Flask-DebugToolbar @ file:///home/conda/feedstock_root/build_artifacts/flask-debugtoolbar_1648606293127/work
+Flask-Script==2.0.6
+Flask-SQLAlchemy @ file:///home/conda/feedstock_root/build_artifacts/flask-sqlalchemy_1675194219027/work
+greenlet @ file:///Users/runner/miniforge3/conda-bld/greenlet_1674937743467/work
+importlib-metadata @ file:///home/conda/feedstock_root/build_artifacts/importlib-metadata_1672612343532/work
+itsdangerous @ file:///home/conda/feedstock_root/build_artifacts/itsdangerous_1648147185463/work
+Jinja2 @ file:///home/conda/feedstock_root/build_artifacts/jinja2_1654302431367/work
+MarkupSafe @ file:///Users/runner/miniforge3/conda-bld/markupsafe_1674135896840/work
+numpy @ file:///Users/runner/miniforge3/conda-bld/numpy_1675642663324/work
+opencv-python==4.7.0
+packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1673482170163/work
+Pillow @ file:///Users/runner/miniforge3/conda-bld/pillow_1678273522198/work
+powerline-shell==0.7.0
+pytesseract @ file:///home/conda/feedstock_root/build_artifacts/pytesseract_1647306555263/work
+SQLAlchemy @ file:///Users/runner/miniforge3/conda-bld/sqlalchemy_1678748876277/work
+typing_extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1678559861143/work
+Werkzeug @ file:///home/conda/feedstock_root/build_artifacts/werkzeug_1676411946679/work
+zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1677313463193/work
