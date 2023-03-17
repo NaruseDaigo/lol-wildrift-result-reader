@@ -1,0 +1,30 @@
+# .gitignore
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyi
+*.pyz
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Flask
+instance/
+.webassets-cache
+
+# IDEs and text editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS artifacts
+.DS_Store
+
+# Database
+my_database.db
