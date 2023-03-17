@@ -18,6 +18,7 @@ LoL Wild Rift Result Readerは、League of Legends: Wild Riftの試合結果ス�
 
 1. リポジトリをクローンまたはダウンロードし、プロジェクトフォルダに移動します。
 2. 必要なパッケージをインストールするために、`pip install -r requirements.txt`を実行します。
+3. `python set_db.py`を実行します。
 3. アプリケーションを起動するために、`python app.py`を実行します。
 4. Webブラウザで `http://localhost:5000` にアクセスし、画面の指示に従って画像をアップロードします。
 5. アップロードされた画像から抽出された試合結果が表示されます。
