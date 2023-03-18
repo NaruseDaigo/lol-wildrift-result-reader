@@ -28,3 +28,6 @@ instance/
 
 # Database
 my_database.db
+
+# log files
+logs/

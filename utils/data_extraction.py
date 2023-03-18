@@ -7,6 +7,15 @@ import re
 from utils.image_processing import extract_victory_or_lose, split_players, split_teams
 from utils.ocr import ocr_segment, ocr_num_segment
 
+# ロギング
+import logging
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s:%(name)s - %(message)s")
+file_handler = logging.FileHandler('/Users/daigo/workspace/lol-wildrift-stats/logs/app.log')
+formatter = logging.Formatter('%(asctime)s - %(levelname)s:%(name)s - %(message)s')
+file_handler.setFormatter(formatter)
+logger = logging.getLogger(__name__)
+logger.addHandler(file_handler)
+
 def parse_kda_txt(kda_text):
     """
     OCRの結果からKill数、Death数、Assist数、獲得した金額を抽出する
@@ -28,12 +37,16 @@ def parse_kda_txt(kda_text):
     return kills, deaths, assists
 
 def extract_match_info(image, return_segmented_image=False):
+    logger.debug("extract_match_info()関数が実行されました。")
     victory_or_lose = extract_victory_or_lose(image)
+    logger.debug("勝敗抽出が完了しました。")
     left_team_image, right_team_image = split_teams(image)
     left_team_player_images = split_players(left_team_image)
     right_team_player_images = split_players(right_team_image)
+    logger.debug("画像分割が完了しました。")
     left_team_info = [extract_player_info(player_image, 'left') for player_image in left_team_player_images]
     right_team_info = [extract_player_info(player_image, 'right') for player_image in right_team_player_images]
+    logger.debug("全解析が完了しました。")
 
     match_info = {
         'victory_or_lose': victory_or_lose,
@@ -41,13 +54,8 @@ def extract_match_info(image, return_segmented_image=False):
         'right_team': right_team_info
     }
 
-    # セグメントされた画像を適切に設定してください。
-    # segmented_images = left_team_player_images
-    segmented_images = \
-        [extract_player_info(player_image, 'right', return_segmented_image=True)[1] for player_image in right_team_player_images]
-
     if return_segmented_image:
-        return match_info, segmented_images
+        segmented_images = image
     else:
         return match_info
 

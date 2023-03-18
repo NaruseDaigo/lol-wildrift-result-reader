@@ -15,10 +15,13 @@ from werkzeug.utils import secure_filename
 from utils.image_processing import preprocess_image
 from utils.data_extraction import extract_match_info
 
-import logging
 # ロギング
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s:%(name)s - %(message)s")
+file_handler = logging.FileHandler('/Users/daigo/workspace/lol-wildrift-stats/logs/app.log')
+formatter = logging.Formatter('%(asctime)s - %(levelname)s:%(name)s - %(message)s')
+file_handler.setFormatter(formatter)
 logger = logging.getLogger(__name__)
+logger.addHandler(file_handler)
 
 UPLOAD_FOLDER = 'app/static/images/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -59,9 +62,9 @@ def analyze(image_filename):
     logger.debug("analyze() 関数が実行されました。")
     file_path = os.path.join(UPLOAD_FOLDER, image_filename)
     preprocessed_image = preprocess_image(file_path)
-    logger.debug("preprocess_image() 関数が実行されました。")
+    logger.debug("preprocess_image() 関数が完了しました。")
     match_info, segmented_images = extract_match_info(preprocessed_image, return_segmented_image=True)
-    logger.debug("extract_match_info() 関数が実行されました。")
+    logger.debug("extract_match_info() 関数が完了しました。")
 
     segmented_filenames = []
     for i, img in enumerate(segmented_images, start=1):
@@ -76,6 +79,7 @@ def analyze(image_filename):
 
 @app.route('/stats/<int:match_id>')
 def stats(match_id):
+    logger.debug("stats()関数が実行されました。")
     match_info = get_match_info_from_db(match_id)
     return render_template('stats.html', match_info=match_info)
 
