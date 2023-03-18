@@ -5,7 +5,7 @@ extract_stats(text): テキストデータを受け取り、戦績情報を抽�
 import re
 
 from utils.image_processing import segment_image, save_all_segments
-from utils.ocr import ocr_segment, ocr_num_segment
+from utils.ocr import ocr_segment, ocr_num_segment, ocr_result_segment
 
 # ロギング
 import logging
@@ -20,10 +20,14 @@ def extract_match_info(image, return_segmented_images=False):
     logger.debug("extract_match_info()関数が実行されました。")
     # 画像分割
     segmented_images = segment_image(image)
+    save_all_segments(segmented_images)
     logger.debug("画像分割が完了しました。")
     # save_all_segments(segmented_images)
     # OCR
-    result_info = ocr_segment(segmented_images['result'])
+    result_info = ocr_result_segment(segmented_images['result'])
+    print('-----------------')
+    print(result_info)
+    print('-----------------')
     logger.debug("勝敗抽出が完了しました。")
     left_team_info = [extract_player_info(player_image, 'left') for player_image in segmented_images["left_team_players"]]
     right_team_info = [extract_player_info(player_image, 'right') for player_image in segmented_images["right_team_players"]]
@@ -58,8 +62,6 @@ def extract_player_info(player_image, side):
         player_name_image = player_image[:int(height/2), int(240):int(240+248)]
         kda_image = player_image[:int(height/2), int(525):int(525+200)]
         gold_image = player_image[:int(height/2), int(725):int(725+141)]
-    
-    save_all_segments({'gold': gold_image})
 
     player_name = ocr_segment(player_name_image)
     kda_txt = ocr_num_segment(kda_image)

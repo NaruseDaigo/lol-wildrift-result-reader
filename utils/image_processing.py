@@ -70,7 +70,7 @@ def segment_result(image):
     """
     # 画像の上部中央部分を切り抜く
     height, width = image.shape[:2]
-    result_image = image[0:int(height * 0.2), int(width * 0.4):int(width * 0.6)]
+    result_image = image[0:int(height * 0.1), int(width * 0.42):int(width * 0.57)]
 
     return result_image
 
@@ -107,7 +107,6 @@ def save_all_segments(segmented_images):
     画像の入った辞書を受け取り、各セグメントをファイルに保存する。
     """
     file_path = os.path.abspath(os.path.join(__file__, '../../app/static/images/segmented/'))
-    print(file_path)
     for key, images in segmented_images.items():
         
         if key == 'left_team_players' or key == 'right_team_players':
