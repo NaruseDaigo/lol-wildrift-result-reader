@@ -31,3 +31,6 @@ my_database.db
 
 # log files
 logs/
+
+# image
+static/images/
