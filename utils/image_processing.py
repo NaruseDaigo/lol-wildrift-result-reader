@@ -4,6 +4,7 @@ preprocess_image(image): 画像を受け取り、OCRに適した形式に前処�
 segment_image(image): 画像を受け取り、戦績データのセグメントに分割する関数。
 """
 import cv2
+import os
 from utils.ocr import ocr_segment
 
 def enhance_image(segment):
@@ -35,37 +36,47 @@ def preprocess_image(image_path):
     return gray_image
 
 def segment_image(image, horizontal_padding=50, vertical_padding=50):
-    # 輪郭を検出
-    contours, _ = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    # # 輪郭を検出
+    # とりあえず領域はハードコーディング for 'iPhone 12 mini' at 2023/03/18
+    # contours, _ = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    segments = []
-    for contour in contours:
-        x, y, w, h = cv2.boundingRect(contour)
-        # 各輪郭の周囲にパディングを追加
-        x1 = max(0, x - horizontal_padding)
-        y1 = max(0, y - vertical_padding)
-        x2 = min(image.shape[1], x + w + horizontal_padding)
-        y2 = min(image.shape[0], y + h + vertical_padding)
-        segment = image[y1:y2, x1:x2]
-        segments.append(segment)
+    # segments = []
+    # for contour in contours:
+    #     x, y, w, h = cv2.boundingRect(contour)
+    #     # 各輪郭の周囲にパディングを追加
+    #     x1 = max(0, x - horizontal_padding)
+    #     y1 = max(0, y - vertical_padding)
+    #     x2 = min(image.shape[1], x + w + horizontal_padding)
+    #     y2 = min(image.shape[0], y + h + vertical_padding)
+    #     segment = image[y1:y2, x1:x2]
+    #     segments.append(segment)
 
-    return segments
+    result_image = segment_result(image)
+    left_team_image, right_team_image = split_teams(image)
+    left_team_players_images= split_players(left_team_image)
+    right_team_players_images = split_players(right_team_image)
 
-def extract_victory_or_lose(image):
+    segmented_images = {
+        "result": result_image,
+        "left_team_players": left_team_players_images,
+        "right_team_players": right_team_players_images
+    }
+
+    return segmented_images
+
+def segment_result(image):
     """
-    勝敗のテキスト（VICTORY, LOSE）を抽出する。
+    勝敗のテキスト（VICTORY, LOSE）の画像領域を抽出する。
     """
     # 画像の上部中央部分を切り抜く
     height, width = image.shape[:2]
-    cropped_image = image[0:int(height * 0.2), int(width * 0.4):int(width * 0.6)]
+    result_image = image[0:int(height * 0.2), int(width * 0.4):int(width * 0.6)]
 
-    # 勝敗のテキストをOCRで抽出
-    victory_or_lose = ocr_segment(cropped_image)
-    return victory_or_lose
+    return result_image
 
 def split_teams(image):
     """
-    画像を2つの部分に分割する（左側：味方チーム、右側：敵チーム）。
+    画像を2つの部分に分割する（左側: 味方チーム、右側: 敵チーム）。
     """
     height, width = image.shape[:2]
     left_team_image = image[:, :int(width * 0.5)]
@@ -88,3 +99,21 @@ def split_players(team_image):
         player_image = body[int(body_height * i / 5):int(body_height * (i + 1) / 5), :]
         player_images.append(player_image)
     return player_images
+
+
+
+def save_all_segments(segmented_images):
+    """
+    画像の入った辞書を受け取り、各セグメントをファイルに保存する。
+    """
+    file_path = os.path.abspath(os.path.join(__file__, '../../app/static/images/segmented/'))
+    print(file_path)
+    for key, images in segmented_images.items():
+        
+        if key == 'left_team_players' or key == 'right_team_players':
+            for i, image in enumerate(images):
+                filename = f"{key}{i}.jpg"
+                cv2.imwrite(os.path.join(file_path, filename), image)
+        else:
+            filename = f"{key}.jpg"
+            cv2.imwrite(os.path.join(file_path, filename), images)

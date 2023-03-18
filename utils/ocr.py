@@ -10,6 +10,7 @@ def ocr_segment(segment):
     return text.strip()
 
 def ocr_num_segment(segment):
-    custom_config = r'--oem 3 --psm 6 -c tessedit_char_whitelist="0123456789-, "'
+    custom_config = r'--oem 3 --psm 6 -c tessedit_char_whitelist="0123456789, "'
     text = pytesseract.image_to_string(segment, lang="eng", config=custom_config)
-    return text.strip()
+    text = text.strip()
+    return text
