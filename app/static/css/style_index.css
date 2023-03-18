@@ -9,50 +9,10 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin-top: 20px;
 }
 
-h1, h3, a, .lead, button {
+h1, .lead, button {
     color: #FFF;
-}
-
-a {
-    background-color: #d12e68;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-}
-
-a:hover, button:hover {
-    background-color: #C8245E;
-}
-
-table {
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #DDD;
-}
-
-th {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.modal {
-    position: fixed;
-    display: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #FFF;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 button {
@@ -64,4 +24,15 @@ button {
 
 button:hover {
     background-color: #C8245E;
+}
+
+.modal {
+    position: fixed;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

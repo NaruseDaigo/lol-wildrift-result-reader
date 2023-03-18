@@ -63,18 +63,10 @@ def analyze(image_filename):
     file_path = os.path.join(UPLOAD_FOLDER, image_filename)
     preprocessed_image = preprocess_image(file_path)
     logger.debug("preprocess_image() 関数が完了しました。")
-    match_info, segmented_images = extract_match_info(preprocessed_image, return_segmented_image=True)
+    match_info = extract_match_info(preprocessed_image)
     logger.debug("extract_match_info() 関数が完了しました。")
 
-    segmented_filenames = []
-    for i, img in enumerate(segmented_images, start=1):
-        segmented_filename = f'{i}segmented_{image_filename}'
-        segmented_filenames.append(segmented_filename)
-        segmented_filepath = os.path.join('app/static/images/segmented', segmented_filename)
-        cv2.imwrite(segmented_filepath, img)
-
-    return render_template('stats.html', match_info=match_info, segmented_filenames=segmented_filenames)
-
+    return render_template('match_result.html', match_info=match_info)
 
 
 @app.route('/stats/<int:match_id>')

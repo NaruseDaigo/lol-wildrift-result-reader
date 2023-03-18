@@ -4,15 +4,10 @@ body {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
     margin-top: 20px;
 }
 
-h1, h3, a, .lead, button {
+h1, h3, a {
     color: #FFF;
 }
 
@@ -25,7 +20,7 @@ a {
     display: inline-block;
 }
 
-a:hover, button:hover {
+a:hover {
     background-color: #C8245E;
 }
 
@@ -42,26 +37,4 @@ th, td {
 
 th {
     background-color: rgba(0, 0, 0, 0.2);
-}
-
-.modal {
-    position: fixed;
-    display: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #FFF;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-button {
-    background-color: #d12e68;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #C8245E;
 }
