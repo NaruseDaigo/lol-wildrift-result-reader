@@ -33,4 +33,4 @@ my_database.db
 logs/
 
 # image
-static/images/
+app/static/images/
