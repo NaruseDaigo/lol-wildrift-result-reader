@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+        <link href="./../static/css/style.css" rel="stylesheet">
+        <title>Wild Rift Match Result Analyzer</title>
+    </head>
+    <body class="wr-theme">
+        <div class="container">
+            <h1 class="text-center wr-title">Wild Rift Match Result Analyzer</h1>
+            <p class="lead text-center">Upload a screenshot of your match results to analyze the stats</p>
+            <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" name="file">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-wr">Upload Screenshot</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
