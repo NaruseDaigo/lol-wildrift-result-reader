@@ -12,7 +12,11 @@ body {
     margin-top: 20px;
 }
 
-h1, h3, a, .lead, button {
+h1,
+h3,
+a,
+.lead,
+button {
     color: #FFF;
 }
 
@@ -25,7 +29,8 @@ a {
     display: inline-block;
 }
 
-a:hover, button:hover {
+a:hover,
+button:hover {
     background-color: #C8245E;
 }
 
@@ -35,7 +40,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     border-bottom: 1px solid #DDD;
 }
@@ -47,12 +53,38 @@ th {
 .modal {
     position: fixed;
     display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #FFF;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 90%;
+}
+
+.close {
+    color: #AAA;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 button {
@@ -60,6 +92,7 @@ button {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 button:hover {
