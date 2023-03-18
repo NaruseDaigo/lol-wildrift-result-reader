@@ -69,13 +69,6 @@ def analyze(image_filename):
     return render_template('match_result.html', match_info=match_info)
 
 
-@app.route('/stats/<int:match_id>')
-def stats(match_id):
-    logger.debug("stats()関数が実行されました。")
-    match_info = get_match_info_from_db(match_id)
-    return render_template('stats.html', match_info=match_info)
-
-
 @app.route('/preview/<image_filename>')
 def preview(image_filename):
     # file_path = os.path.join(UPLOAD_FOLDER, image_filename)
