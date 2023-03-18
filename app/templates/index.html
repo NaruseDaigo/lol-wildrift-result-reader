@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
         <link href="./../static/css/style.css" rel="stylesheet">
         <title>LoL Wild Rift Result Reader</title>
@@ -10,9 +10,8 @@
     <body>
         <div class="container">
             <h1 class="mb-4">LoL Wild Rift Result Reader</h1>
-            <p class="lead mb-5">スクショをアップロードしてリザルトを保存(しない)</p>
-            <p class="lead mb-5">いつか分析</p>
-            <button id="uploadBtn">画像をアップロード</button>
+            <p class="lead mb-5">Upload a screenshot of your match results to save and analyze the stats</p>
+            <button id="uploadBtn">Upload Screenshot</button>
 
             <!-- Upload Modal -->
             <div class="modal" id="uploadModal">
@@ -20,10 +19,10 @@
                     <span class="close">&times;</span>
                     <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="file" class="form-label">画像ファイルを選択</label>
+                            <label for="file" class="form-label">Choose file</label>
                             <input type="file" class="form-control" id="file" name="file">
                         </div>
-                        <button type="submit">アップロード</button>
+                        <button type="submit">Upload</button>
                     </form>
                 </div>
             </div>

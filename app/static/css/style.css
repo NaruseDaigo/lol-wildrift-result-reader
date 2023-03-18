@@ -12,6 +12,26 @@ body {
     margin-top: 20px;
 }
 
+/* レスポンシブデザインのためのメディアクエリ */
+/* できてない */
+@media (max-width: 2000px) {
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    /* 追加: 左右のテーブルのコンテナにパディングを適用 */
+    .col-md-6 {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+      h3 {
+        word-wrap: break-word;
+      }
+}
 
 h1,h3,a,.lead,button {
     color: #FFF;
@@ -96,6 +116,24 @@ button:hover {
     background-color: #C8245E;
 }
 
-.top-space {
-    margin-top: 50px;
+/* Wild Rift specific styles */
+body.wr-theme {
+    background-image: url('../images/wildrift_background.jpg');
+    background-size: cover;
+    background-position: center;
 }
+
+h1.wr-title {
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.btn-wr {
+    font-weight: bold;
+    background-color: #4b69ff;
+}
+
+.btn-wr:hover {
+    background-color: #3c57e0;
+}
+
